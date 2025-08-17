@@ -5,7 +5,7 @@ import '../assets/style.css';
 
 // Font Awesome CDN (inserted in index.html or dynamically loaded separately)
 
-const BuyBot = () => {
+const WelcomePage = () => {
   return (
     <section>
       <div className="main_pages">
@@ -35,4 +35,4 @@ const BuyBot = () => {
   );
 };
 
-export default BuyBot;
+export default WelcomePage;
