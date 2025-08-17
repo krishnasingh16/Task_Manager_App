@@ -105,7 +105,6 @@ const Registration = () => {
                   required
                 />
               </div>
-
               <div className="mb-6">
                 <input
                   placeholder="phoneNumber"
@@ -128,7 +127,6 @@ const Registration = () => {
                 />
               </div>
             </div>
-
 
             <button
               type="submit"

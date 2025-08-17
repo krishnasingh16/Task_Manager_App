@@ -1,70 +1,128 @@
-# Getting Started with Create React App
+Task Manager API - README
+Overview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a Task Manager backend API built with Node.js, Express, and MongoDB. It supports user registration, login, and role-based task management with roles like admin and regular users.
 
-## Available Scripts
+User Authentication
+Registration (POST /register)
 
-In the project directory, you can run:
+Required fields: fullname, email, phoneNumber, password
 
-### `npm start`
+Checks if the email is already registered.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Password is hashed with bcrypt before saving.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Returns success message if created.
 
-### `npm test`
+Login (POST /login)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Required fields: email, password
 
-### `npm run build`
+Checks if user exists and password matches.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+On success:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Generates a JWT token valid for 1 day.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Returns user details and token.
 
-### `npm run eject`
+Sends token as an HTTP-only cookie.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+On failure: returns an error message.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+User Roles & Permissions
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Users have a role field: either "admin" or default user.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+JWT token contains userId and role for authorization.
 
-## Learn More
+Task Management
+Models
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Each task has: title, description, status, priority, dueDate, assignedTo, createdBy, and optional tags.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Status values: "pending", "in-progress", "completed".
 
-### Code Splitting
+Get Task Counts (GET /tasks/counts)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Admin: counts for all tasks across statuses.
 
-### Analyzing the Bundle Size
+User: counts only for tasks created by them.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Create Task (POST /tasks)
 
-### Making a Progressive Web App
+Creates a new task.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Requires auth user ID as createdBy.
 
-### Advanced Configuration
+Validates assignedTo user ID format if provided.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Get All Tasks (GET /tasks)
 
-### Deployment
+Admin: retrieves all tasks matching optional keyword (searches title & description).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+User: retrieves tasks created by themselves matching keyword.
 
-### `npm run build` fails to minify
+Get Task By ID (GET /tasks/:id)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Returns task details.
+
+Admin: access any task.
+
+User: access only their own tasks.
+
+Returns 403 Access denied if unauthorized.
+
+Update Task (PUT /tasks/:id)
+
+Admin: can update all fields (title, description, status, priority, dueDate, assignedTo, tags).
+
+User: can only update status field to one of the allowed values.
+
+Unauthorized users get a 403 Access denied.
+
+Invalid status updates return a 400 Bad Request.
+
+Delete Task (DELETE /tasks/:id)
+
+Only admin users can delete tasks.
+
+Others receive 403 Only admin can delete tasks.
+
+How to Use
+
+Register a new user or use an existing user.
+
+Login with valid credentials to get an auth token.
+
+Use the token in the Authorization header (Bearer <token>) for subsequent API calls.
+
+Create, read, update, and delete tasks based on your user role.
+
+Non-admin users have limited access to tasks they created and can only update task status.
+
+Admins have full control over all tasks.
+
+Example Workflow
+
+User signs up and logs in.
+
+User creates tasks assigned to themselves or others.
+
+User can view and update their tasks' status.
+
+Admin can manage (view/update/delete) all tasks.
+
+Admin can assign tasks to any user and update all details.
+
+Security Notes
+
+Passwords are hashed with bcrypt.
+
+JWT tokens are used for authentication and stored as HTTP-only cookies.
+
+Role-based access control enforced in all task-related endpoints.
+
+Feel free to ask if you want me to generate example API routes or usage with curl/Postman!
+
+Would you like me to help you with a Postman collection or client example next?

@@ -1,4 +1,3 @@
-// src/routes/routes.jsx
 import Dashboard from '../dashboard/Dashboard';
 import MainLayout from '../dashboard/pages/Layout/MainLayout';
 import Task from '../dashboard/pages/task/AllTask';

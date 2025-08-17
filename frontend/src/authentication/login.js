@@ -43,6 +43,7 @@ const Login = () => {
       setLoading(false);
       if (response?.data?.success === true) {
         localStorage.setItem("logindataen", response?.data?.token);
+        localStorage.setItem("role", response?.data?.user?.role);
         navigate("/dashboard");
         window.location.reload();
       }

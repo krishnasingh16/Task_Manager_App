@@ -7,6 +7,7 @@ const Sidebar = () => {
     const [activeMenu, setActiveMenu] = useState("Dashboard");
     const [activeSubMenu, setActiveSubMenu] = useState("");
     const [showSidebar, setShowSidebar] = useState(false);
+    const role = localStorage.getItem("role")
     const navigate = useNavigate();
 
     const handleMenuClick = (title, hasSubItems, path) => {
@@ -30,7 +31,10 @@ const Sidebar = () => {
     const menuItems = [
         { title: "Dashboard", icon: <FaTachometerAlt />, path: "/dashboard" },
         { title: "Task", icon: <FaCheck />, path: "/tasklist" },
-        { title: "Create Task", icon: <FaCheck />, path: "/addtask" },
+        ...(role === "admin"
+            ? [{ title: "Create Task", icon: <FaCheck />, path: "/addtask" }]
+            : []),
+       
         {
             title: "Logout", icon: <FaSignOutAlt />, onClick: () => {
                 localStorage.clear();

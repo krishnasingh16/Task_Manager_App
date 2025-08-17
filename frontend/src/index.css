@@ -18,7 +18,7 @@ code {
   color: white;
 }
 
-/* From Uiverse.io by Hashir-Ahmed123 */
+
 @keyframes drop {
   0% {
     transform: translateY(0px);
@@ -85,4 +85,3 @@ code {
     scrollbar-width: none !important;
 }
 
-/* /// */

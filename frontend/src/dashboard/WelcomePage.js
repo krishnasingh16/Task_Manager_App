@@ -1,6 +1,7 @@
 import React from 'react';
 import highlight from '../assets/highligt.svg';
 import '../assets/style.css';
+import favicon from '../assets/favicon.png'
 
 
 const WelcomePage = () => {
@@ -14,8 +15,9 @@ const WelcomePage = () => {
           <img src={highlight} alt="" className="highlighted highlight-4" />
         </div>
 
+        <img src={favicon} alt='' className='h-[100px]'/>
         <h2>Welcome to <span>Task Mangaer App</span></h2>
-        <p>Whether you're in e-commerce, trading, marketing,</p>
+        <p></p>
 
         <div className="btn_main">
           <a href="/login">Login Now</a>

@@ -11,6 +11,7 @@ const TaskList = () => {
   const itemsPerPage = 10;
   const navigate = useNavigate();
   const token = localStorage.getItem("logindataen");
+  const role = localStorage.getItem("role");
 
   const { data, isLoading, refetch } = useQuery(
     ['get_all_tasks'],
@@ -101,13 +102,16 @@ const TaskList = () => {
                       >
                         <FaEdit />
                       </button>
-                      <button
+                      {role==="admin" && (
+                        <button
                         onClick={() => handleDelete(task._id)}
                         className="text-red-500 hover:underline"
                         title="Delete"
                       >
                         Delete
                       </button>
+                      )}
+                      
                     </td>
                   </tr>
                 ))}

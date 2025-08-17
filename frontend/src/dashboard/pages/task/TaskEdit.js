@@ -7,6 +7,7 @@ const TaskEdit = () => {
   const { taskId } = useParams();
   const navigate = useNavigate();
   const token = localStorage.getItem("logindataen");
+  const role = localStorage.getItem("role");
 
   const [formData, setFormData] = useState({
     title: "",
@@ -65,7 +66,7 @@ const TaskEdit = () => {
         },
       });
 
-      alert("Task updated successfully ✅");
+      alert("Task updated successfully");
       navigate("/tasklist");
       window.location.reload();
     } catch (err) {
@@ -86,18 +87,20 @@ const TaskEdit = () => {
         onSubmit={handleSubmit}
         className="bg-gray-800 p-6 rounded-lg border border-gray-700 shadow grid grid-cols-1 md:grid-cols-2 gap-6"
       >
-        <div className="flex flex-col">
-          <label className="mb-2 font-semibold text-gray-300">Title</label>
-          <input
-            type="text"
-            name="title"
-            className="p-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-            value={formData.title}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
+        {" "}
+        {role === "admin" && (
+          <div className="flex flex-col">
+            <label className="mb-2 font-semibold text-gray-300">Title</label>
+            <input
+              type="text"
+              name="title"
+              className="p-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={formData.title}
+              onChange={handleChange}
+              required
+            />
+          </div>
+        )}
         <div className="flex flex-col">
           <label className="mb-2 font-semibold text-gray-300">Status</label>
           <select
@@ -108,12 +111,13 @@ const TaskEdit = () => {
             required
           >
             <option value="pending">Pending</option>
-            <option value="in progress">In Progress</option>
+            <option value="in-progress">In Progress</option>
             <option value="completed">Completed</option>
           </select>
         </div>
-
-        <div className="flex flex-col">
+        {role === "admin" && (
+        <>
+         <div className="flex flex-col">
           <label className="mb-2 font-semibold text-gray-300">Priority</label>
           <select
             name="priority"
@@ -127,7 +131,6 @@ const TaskEdit = () => {
             <option value="high">High</option>
           </select>
         </div>
-
         <div className="flex flex-col">
           <label className="mb-2 font-semibold text-gray-300">Due Date</label>
           <input
@@ -139,7 +142,6 @@ const TaskEdit = () => {
             required
           />
         </div>
-
         <div className="flex flex-col">
           <label className="mb-2 font-semibold text-gray-300">
             Assigned To (User ID)
@@ -166,7 +168,8 @@ const TaskEdit = () => {
             required
           />
         </div>
-
+        </>
+      )}
         <div className="md:col-span-2 flex w justify-end">
           <button
             type="submit"
