@@ -45,7 +45,6 @@ const Login = () => {
         localStorage.setItem("logindataen", response?.data?.token);
         navigate("/dashboard");
         window.location.reload();
-       
       }
     } catch (error) {
       console.error(error);
@@ -58,79 +57,71 @@ const Login = () => {
     <>
       <Loader isLoading={loading} />
       <div
-      className="flex justify-center items-center min-h-screen"
-      style={{
-        backgroundImage: `url(${body})`, // Use the imported variable here
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
-          <div
-           className="w-full max-w-lg lg:p-6 p-4 border-border-color-green border rounded-xl shadow-2xl"
-            // style={{
-            //   backgroundImage:
-            //     "linear-gradient(225deg, rgba(0, 170, 216, 1) 0%, rgba(20, 20, 20, 1) 61%)",
-            // }}
-          >
-            <div className="flex justify-center my-2">
-              <img src={logo} alt="Logo" className="h-20  " />
-            </div>
-            <h2 className="text-xl font-bold text-center text-white mb-6">
-              Login to Your Account
-            </h2>
-            <form onSubmit={formik.handleSubmit}>
-              <div className="mb-4">
-                <input
-                  placeholder="email"
-                  type="text"
-                  id="email"
-                  name="email"
-                  value={formik.values.email}
-                  onChange={formik.handleChange}
-                  className="w-full p-3 mt-1 text-black placeholder:text-black border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#008eff] transition duration-300 ease-in-out transform hover:scale-105"
-                  required
-                />
-              </div>
-              <div className="mb-6">
-                <input
-                  placeholder="Password"
-                  type="password"
-                  id="password"
-                  name="password"
-                  value={formik.values.password}
-                  onChange={formik.handleChange}
-                  className="w-full p-3 mt-1 text-black placeholder:text-black border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#008eff] transition duration-300 ease-in-out transform hover:scale-105"
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                // style={{
-                //   backgroundImage:
-                //     "linear-gradient(225deg, rgba(0, 170, 216, 1) 0%, rgba(20, 20, 20, 1) 61%)",
-                // }}
-                className="w-full py-3 text-white border-2 border-border-color-green font-semibold rounded-full hover:bg-black bg-[#128C7E] focus:outline-none focus:ring-2 focus:ring-[#128C7E] transition duration-300 ease-in-out transform hover:scale-105"
-              >
-                Login
-              </button>
-            </form>
-            <div className="">
-              <p className="text-white text-sm text-right py-2 mx-4 hover:underline cursor-pointer" 
-              onClick={()=>navigate('/forgot')}>Forget Password ?</p>
-            </div>
-            <div className="mt-4 text-center">
-              <p className="text-sm text-gray-700">
-                Don't have an account?{" "}
-                <span
-                  className="text-white cursor-pointer hover:underline"
-                  onClick={() => navigate("/register")}
-                >
-                  Sign up
-                </span>
-              </p>
-            </div>
+        className="flex justify-center items-center min-h-screen"
+        style={{
+          backgroundImage: `url(${body})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="w-full max-w-lg lg:p-6 p-4 border-border-color-green border rounded-xl shadow-2xl">
+          <div className="flex justify-center my-2">
+            <img src={logo} alt="Logo" className="h-20  " />
           </div>
-      
+          <h2 className="text-xl font-bold text-center text-white mb-6">
+            Login to Your Account
+          </h2>
+          <form onSubmit={formik.handleSubmit}>
+            <div className="mb-4">
+              <input
+                placeholder="email"
+                type="text"
+                id="email"
+                name="email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                className="w-full p-3 mt-1 text-black placeholder:text-black border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#008eff] transition duration-300 ease-in-out transform hover:scale-105"
+                required
+              />
+            </div>
+            <div className="mb-6">
+              <input
+                placeholder="Password"
+                type="password"
+                id="password"
+                name="password"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                className="w-full p-3 mt-1 text-black placeholder:text-black border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#008eff] transition duration-300 ease-in-out transform hover:scale-105"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full py-3 text-white border-2 border-border-color-green font-semibold rounded-full hover:bg-black bg-[#128C7E] focus:outline-none focus:ring-2 focus:ring-[#128C7E] transition duration-300 ease-in-out transform hover:scale-105"
+            >
+              Login
+            </button>
+          </form>
+          <div className="">
+            <p
+              className="text-white text-sm text-right py-2 mx-4 hover:underline cursor-pointer"
+            >
+              Forget Password ?
+            </p>
+          </div>
+          <div className="mt-4 text-center">
+            <p className="text-sm text-gray-700">
+              Don't have an account?{" "}
+              <span
+                className="text-white cursor-pointer hover:underline"
+                onClick={() => navigate("/register")}
+              >
+                Sign up
+              </span>
+            </p>
+          </div>
+        </div>
       </div>
     </>
   );

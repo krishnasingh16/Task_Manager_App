@@ -9,7 +9,6 @@ const Loader = ({isLoading}) => {
         open={isLoading}
         TransitionComponent={Transition}
         keepMounted
-        // onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
         PaperProps={{
           style: {

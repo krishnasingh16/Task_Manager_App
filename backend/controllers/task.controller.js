@@ -1,6 +1,6 @@
 import { Task } from "../models/task.model.js";
 
-// ✅ GET TASK COUNTS (total, pending, completed)
+
 export const getTaskCounts = async (req, res) => {
     try {
       const totalTasks = await Task.countDocuments();
@@ -27,12 +27,12 @@ export const getTaskCounts = async (req, res) => {
     }
   };
   
-// ✅ CREATE TASK
+
 export const CreateTask = async (req, res) => {
     try {
       const { title, description, status, priority, dueDate, assignedTo } = req.body;
   
-      // Yahan `req.id` use karo jo authenticated user ka id hai
+
       const createdBy = req.id;
   
       if (!createdBy) {
@@ -42,7 +42,7 @@ export const CreateTask = async (req, res) => {
         });
       }
   
-      // Validate assignedTo: must be valid ObjectId string (24 hex characters)
+
       if (assignedTo && !assignedTo.match(/^[0-9a-fA-F]{24}$/)) {
         return res.status(400).json({
           message: "Invalid assignedTo user ID",
@@ -70,7 +70,6 @@ export const CreateTask = async (req, res) => {
   
 
 
-// ✅ GET ALL TASKS
 export const getAllTasks = async (req, res) => {
   try {
     const keyword = req.query.keyword || "";
@@ -103,7 +102,6 @@ export const getAllTasks = async (req, res) => {
   }
 };
 
-// ✅ GET TASK BY ID
 export const getTaskById = async (req, res) => {
   try {
     const taskId = req.params.id;
@@ -127,7 +125,6 @@ export const getTaskById = async (req, res) => {
   }
 };
 
-// ✅ UPDATE TASK
 export const updateTask = async (req, res) => {
   try {
     const { title, description, status, priority, dueDate, assignedTo, tags } = req.body;
@@ -166,7 +163,6 @@ export const updateTask = async (req, res) => {
   }
 };
 
-// ✅ DELETE TASK
 export const deleteTask = async (req, res) => {
   try {
     const taskId = req.params.id;

@@ -107,7 +107,7 @@ export const logout = async (req, res) => {
 export const updateProfile = async (req, res) => {
   try {
     const { fullname, email, phoneNumber } = req.body;
-    const userId = req.id; //middleware authentication
+    const userId = req.id;
     let user = await User.findById(userId);
     if (!user) {
       return res.status(400).json({
@@ -115,12 +115,9 @@ export const updateProfile = async (req, res) => {
         success: false,
       });
     }
-    // updating data
     if(fullname) user.fullname = fullname
     if(email)  user.email = email
     if(phoneNumber) user.phoneNumber = phoneNumber
-
-    //resume here
 
     await user.save();
 

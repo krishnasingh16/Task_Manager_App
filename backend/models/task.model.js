@@ -26,7 +26,7 @@ const taskSchema = new mongoose.Schema({
     },
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User", // Assuming you have a User model
+        ref: "User",
         required: true
     },
     assignedTo: {
@@ -34,11 +34,11 @@ const taskSchema = new mongoose.Schema({
         ref: "User"
     },
     tags: {
-        type: [String], // optional array of tags
+        type: [String],
         default: []
     },
 }, {
-    timestamps: true // Automatically adds createdAt & updatedAt
+    timestamps: true
 });
 
 export const Task = mongoose.model("Task", taskSchema);

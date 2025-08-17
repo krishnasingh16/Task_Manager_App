@@ -1,7 +1,5 @@
 export const domain = "http://localhost:8000";
-// export const domain = 'https://buybot.club';
-export const frontend = "https://buybot.club";
-export const dollar = "$";
+
 
 export const endpoint = {
   registration_api: `${domain}/api/v1/auth/register`,

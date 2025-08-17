@@ -14,7 +14,6 @@ app.get('/',(req,res)=>{
     return res.json('hello user')
 })
 
-// middleware
 app.use(express.json())
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser())
@@ -26,7 +25,6 @@ app.use(cors(corsOption))
 
 const PORT= process.env.PORT || 3000;
 
-// api's
 app.use("/api/v1/auth", AuthRouter)
 app.use("/api/v1/task", TaskRouter)
 

@@ -13,7 +13,7 @@ const Dashboard = () => {
       const res = await axios.get(endpoint?.task_counts, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      return res.data;  // <-- yahan return karna zaroori hai
+      return res.data;
     },
     {
       keepPreviousData: true,
@@ -26,7 +26,7 @@ const Dashboard = () => {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading task counts.</div>;
 
-  const counts = data?.counts || {};  // data ke andar counts key hai
+  const counts = data?.counts || {};  
 
   const statCards = [
     { title: "Total Tasks", value: counts.totalTasks ?? 0, icon: <FaTasks /> },

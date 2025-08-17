@@ -97,7 +97,6 @@ const TaskCreate = () => {
     </div>
   </div>
 
-  {/* Rest of the form fields below with original grid or stacked layout */}
   <div className="grid grid-cols-2 gap-6">
     <div>
       <label className="block mb-1 font-medium">Status <span className="text-red-500">*</span></label>

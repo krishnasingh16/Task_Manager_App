@@ -1,9 +1,7 @@
 import React from 'react';
-import logo from '../assets/logo.png';
 import highlight from '../assets/highligt.svg';
 import '../assets/style.css';
 
-// Font Awesome CDN (inserted in index.html or dynamically loaded separately)
 
 const WelcomePage = () => {
   return (
@@ -16,7 +14,6 @@ const WelcomePage = () => {
           <img src={highlight} alt="" className="highlighted highlight-4" />
         </div>
 
-        {/* <img src={logo} alt="Task Mangaer Logo" className="logo" /> */}
         <h2>Welcome to <span>Task Mangaer App</span></h2>
         <p>Whether you're in e-commerce, trading, marketing,</p>
 
